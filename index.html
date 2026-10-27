@@ -1,53 +1,490 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>王俊学 | Academic Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wang Junxue's academic homepage. Research in brain-inspired computing, spiking neural networks, and neural dynamics.">
+  <title>Wang Junxue | Academic Homepage</title>
   <style>
-    body {
-      max-width: 850px;
-      margin: 60px auto;
-      padding: 0 24px;
-      font-family: Arial, sans-serif;
-      line-height: 1.8;
-      color: #263238;
+    :root {
+      --bg: #ffffff;
+      --text: #202938;
+      --muted: #667085;
+      --accent: #2459a9;
+      --border: #e5eaf1;
+      --soft: #f5f8fc;
     }
-    h1, h2 { color: #174a70; }
-    a { color: #1769aa; }
-    .subtitle { color: #667788; }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(1080px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.96);
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 58px;
+      padding: 68px 0 54px;
+      align-items: start;
+    }
+
+    .profile {
+      text-align: center;
+      padding: 28px 18px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .avatar {
+      width: 142px;
+      height: 142px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e1eaf8;
+      color: #2459a9;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .profile h1 {
+      font-size: 23px;
+      line-height: 1.35;
+      margin: 8px 0;
+    }
+
+    .profile .affiliation {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 14px;
+      margin-top: 18px;
+      font-size: 13px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .intro h2 {
+      font-size: clamp(29px, 4vw, 39px);
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin: 10px 0 20px;
+    }
+
+    .intro p { color: #465164; }
+
+    .section {
+      padding: 32px 0 38px;
+      border-top: 1px solid var(--border);
+      scroll-margin-top: 24px;
+    }
+
+    .section h2 {
+      font-size: 23px;
+      margin: 0 0 22px;
+      letter-spacing: -.3px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      margin-top: -12px;
+      margin-bottom: 24px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .research-card {
+      padding: 21px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: white;
+    }
+
+    .research-card .number {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .research-card h3 {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .research-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .timeline {
+      border-left: 2px solid var(--border);
+      margin-left: 8px;
+      padding-left: 26px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 25px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      left: -32px;
+      top: 9px;
+    }
+
+    .timeline-date {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .timeline-item h3 {
+      margin: 3px 0;
+      font-size: 17px;
+    }
+
+    .timeline-item p {
+      margin: 2px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .publication {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 22px;
+      padding: 23px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .publication:first-of-type { border-top: 0; }
+
+    .pub-year {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .pub-title {
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 650;
+      margin: 0 0 8px;
+    }
+
+    .pub-authors {
+      font-size: 14px;
+      color: #536074;
+      margin: 0 0 7px;
+    }
+
+    .pub-venue {
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 5px;
+      background: #edf3fc;
+      color: #2459a9;
+      font-size: 12px;
+      margin: 8px 5px 0 0;
+    }
+
+    .contact-box {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      padding: 22px 24px;
+      border-radius: 12px;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-top: 35px;
+      }
+
+      .profile { max-width: 340px; margin: 0 auto; width: 100%; }
+      .research-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 10px 14px; }
+      nav { align-items: flex-start; padding: 16px 0; flex-direction: column; }
+      .publication { grid-template-columns: 1fr; gap: 5px; }
+    }
   </style>
 </head>
+
 <body>
-  <h1>王俊学 | Wang Junxue</h1>
-  <p class="subtitle">
-    Researcher in Artificial Intelligence
-  </p>
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#">Wang Junxue</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <h2>About Me</h2>
-  <p>
-    I am interested in brain-inspired computing,
-    spiking neural networks, synaptic dynamics,
-    and effective connectivity modeling.
-  </p>
+<main class="container">
+  <section class="hero" id="about">
+    <aside class="profile">
+      <div class="avatar">JW</div>
+      <h1>Wang Junxue</h1>
+      <div class="affiliation">
+        School of Artificial Intelligence<br>
+        Tianjin University, China
+      </div>
+      <div class="profile-links">
+        <!-- Replace # with your actual profile URLs -->
+        <a href="#" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/junxuewang" target="_blank" rel="noopener">GitHub</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </aside>
 
-  <h2>Research Interests</h2>
-  <ul>
-    <li>Spiking Neural Networks</li>
-    <li>Heterogeneous Synaptic Dynamics</li>
-    <li>Brain Network Modeling and Effective Connectivity</li>
-  </ul>
+    <div class="intro">
+      <div class="eyebrow">Academic Homepage</div>
+      <h2>Brain-Inspired Computing<br>and Neural Dynamics</h2>
+      <p>
+        I am a Ph.D. student at the School of Artificial Intelligence,
+        Tianjin University. My research interests include brain-inspired
+        computing, spiking neural networks, and temporal information
+        processing.
+      </p>
+      <p>
+        My research explores how heterogeneous synaptic dynamics and
+        adaptive temporal integration can improve neural computation.
+        I am also interested in developing computational models that
+        connect biologically inspired mechanisms with practical
+        artificial intelligence systems.
+      </p>
+      <p>
+        I work on neural architectures and synaptic mechanisms for
+        representing information across multiple timescales, with the
+        broader goal of building more flexible and biologically inspired
+        learning systems.
+      </p>
+    </div>
+  </section>
 
-  <h2>Publications</h2>
-  <p>My publications and research projects will be listed here.</p>
+  <section class="section" id="research">
+    <h2>Research Interests</h2>
+    <p class="section-intro">
+      My research focuses on temporal computation and biologically inspired
+      neural architectures.
+    </p>
+    <div class="research-grid">
+      <article class="research-card">
+        <div class="number">01 / NEURAL COMPUTATION</div>
+        <h3>Spiking Neural Networks</h3>
+        <p>
+          Exploring neural and synaptic dynamics for efficient temporal
+          information processing in spiking neural networks.
+        </p>
+      </article>
+      <article class="research-card">
+        <div class="number">02 / SYNAPTIC DYNAMICS</div>
+        <h3>Heterogeneous Synapses</h3>
+        <p>
+          Investigating diverse synaptic timescales and their role in
+          temporal integration and neural computation.
+        </p>
+      </article>
+      <article class="research-card">
+        <div class="number">03 / TEMPORAL MODELS</div>
+        <h3>Adaptive Temporal Integration</h3>
+        <p>
+          Developing adaptive synaptic filters and neural models for
+          flexible temporal representation across tasks.
+        </p>
+      </article>
+    </div>
+  </section>
 
-  <h2>Contact</h2>
-  <p>Email: wangjunxue@tju.edu.cn</p>
-  <p>
-    <a href="https://github.com/wangjunxue.github.io">
-      GitHub Profile
-    </a>
-  </p>
+  <section class="section" id="education">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2027 – Present</div>
+        <h3>Ph.D. in Artificial Intelligence</h3>
+        <p>School of Artificial Intelligence, Tianjin University</p>
+        <p>Research interests: Brain-inspired computing and neural dynamics.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2023 – 2027</div>
+        <h3>B.Eng. in Computer Science and Technology</h3>
+        <p>Elite Class, Tianjin University</p>
+        <p>Undergraduate studies in computer science and intelligent systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="publications">
+    <h2>Selected Publications</h2>
+    <p class="section-intro">
+      A selection of my research publications. For the complete and updated
+      list, please visit my Google Scholar profile.
+    </p>
+
+    <article class="publication">
+      <div class="pub-year">2026</div>
+      <div>
+        <h3 class="pub-title">
+          HetSyn: Versatile Timescale Integration in Spiking Neural Networks
+          via Heterogeneous Synapses
+        </h3>
+        <p class="pub-authors">
+          Deng Z, Liu Z, Wang J, et al.
+        </p>
+        <div class="pub-venue">Advances in Neural Information Processing Systems (NeurIPS), 2026.</div>
+        <span class="tag">Spiking Neural Networks</span>
+        <span class="tag">Heterogeneous Synapses</span>
+      </div>
+    </article>
+
+    <article class="publication">
+      <div class="pub-year">2026</div>
+      <div>
+        <h3 class="pub-title">
+          Rethinking Post-Synaptic Potential Dynamics: Adaptive Synaptic Filter
+          for Versatile Temporal Integration
+        </h3>
+        <p class="pub-authors">
+          Liu Z, Wang J, Yu Q.
+        </p>
+        <div class="pub-venue">Pattern Recognition, 2026, 113765.</div>
+        <span class="tag">Adaptive Synaptic Filter</span>
+        <span class="tag">Temporal Integration</span>
+      </div>
+    </article>
+
+    <p>
+      <a href="#" target="_blank" rel="noopener">
+        View full publication list on Google Scholar →
+      </a>
+    </p>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <div class="contact-box">
+      I am interested in academic discussions and collaborations in
+      brain-inspired computing, spiking neural networks, and neural dynamics.
+      <p>
+        <strong>Affiliation:</strong> School of Artificial Intelligence,
+        Tianjin University
+      </p>
+      <p>
+        <strong>GitHub:</strong>
+        <a href="https://github.com/junxuewang">github.com/junxuewang</a>
+      </p>
+      <p>
+        <strong>Email:</strong> Add your academic email here
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 Wang Junxue · Academic Homepage
+  </div>
+</footer>
 </body>
 </html>
